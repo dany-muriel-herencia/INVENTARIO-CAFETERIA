@@ -1,9 +1,9 @@
 export enum  alertas  {
 
-    sin_stock,
-    ultimos_paquetes, 
-    reservados ,
-    Productos_proximos_a_vencer,
-    cantidad_inexistente
+    acabado = "sin_stock",
+    ultimos_paquetes = "ultimos_paquetes", 
+    reservados = "reservados" ,
+    Productos_proximos_a_vencer = "Productos_proximos_a_vencer",
+    cantidad_inexistente = "cantidad_inexistente"
 
 }
