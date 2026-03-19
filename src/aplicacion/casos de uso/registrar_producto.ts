@@ -11,6 +11,7 @@ export class Registrar_producto {
         this.repositorio_producto=historial_productos;
     }
     agregar_productos(producto: Producto):void {
-        foreach=>
+        let producto
+       
     }
 }
