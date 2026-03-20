@@ -7,4 +7,11 @@ export class Repositorio_stock {
 
 
 
+    async almacenamiento (): Promise<[]>  {
+        
+        return [];
+    }
+
+
+
 }
