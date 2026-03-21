@@ -1,7 +1,7 @@
 import { Producto } from "../../dominio/entidades/producto";
 import {Repositorios_producto} from "../../infraestructura/repositorios/repositorios_producto";
 import {alertas} from "../../dominio/enumns/alertas";
-import {stock} from "../../dominio/entidades/stock";
+import {lote} from "../../dominio/entidades/lote";
 
 export class generar_reporte_de_estado {
     

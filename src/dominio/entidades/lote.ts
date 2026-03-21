@@ -1,13 +1,13 @@
 import { Producto } from "./producto";
 
-export class stock {
+export class lote {
     private categoria : string ;
 
     private cantidad : number ;
     private productos :Producto[] ;
     constructor (productos :Producto[] ,categoria : string ){
         if(productos && categoria === null ){
-            throw new Error("El stock no puede estar vacio");
+            throw new Error("El lote no puede estar vacio");
         }
         this.productos=productos;
         this.categoria=categoria;
