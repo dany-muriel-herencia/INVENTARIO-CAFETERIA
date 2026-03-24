@@ -16,7 +16,11 @@ export class Repositorio_lote {
     async get_cantidad (): Promise<number>  {
         return 0;
     }   
-
-
+    get_proximos_a_vencer (): Promise<number> {
+        return Promise.resolve(0);
+    }
+    async get_almacenamiento(): Promise<number> {
+        return Promise.resolve(0);
+    }
 
 }

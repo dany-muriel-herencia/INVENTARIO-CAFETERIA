@@ -1,7 +1,7 @@
 import { Repositorios_producto } from "../../infraestructura/repositorios/repositorios_producto";
 import { Producto } from "../../dominio/entidades/producto";
 import { ProductoResumen } from "../../dominio/enumns/Producto";
-// Interfaz para el resumen del producto
+
 
 
 export class BuscarProducto {
