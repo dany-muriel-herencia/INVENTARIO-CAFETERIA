@@ -5,28 +5,28 @@ import { lote } from "../../dominio/entidades/lote";
 
 
 export class agregar_producto {
-    private repositorio_producto: Producto;
+    private repositorio_producto: Repositorios_producto [] =[];
     
-    constructor(historial_productos : Producto) {
+    constructor(historial_productos : Repositorios_producto[]) {
         this.repositorio_producto=historial_productos;
     }
     
-    async ejecutar():Promise<Producto> {
-        if(!this.repositorio_producto){
+    async ejecutar(producto : Producto):Promise<Producto> {
+        if(!producto){
             throw new Error("El producto no es válido");
         }
-        if(this.repositorio_producto.getPrecio() <= 0){
+        if(producto.getPrecio() <= 0){
             throw new Error("El precio del producto debe ser mayor a cero");
         }
-        if(this.repositorio_producto.Fecha_caducidad <= 0){
+        if(producto.Fecha_caducidad <= 0){
             throw new Error("La fecha de caducidad debe ser válida");
         }
-        if(this.repositorio_producto.Peso <= 0){
+        if(producto.Peso <= 0){
             throw new Error("El peso del producto debe ser mayor a cero");
         }
         const repositorio_producto = new Repositorios_producto();
-        await repositorio_producto.guardar();   
-        return this.repositorio_producto;
+        await repositorio_producto.guardar(producto);
+        return producto;
     }
 
 }

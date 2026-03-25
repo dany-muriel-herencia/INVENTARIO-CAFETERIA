@@ -1,6 +1,6 @@
 import { lote } from "../entidades/lote";
 
-export interface Repo_lote {
+export interface repo_lote {
     guardar(lote: lote): Promise<void>;
     obtenerTodos(): Promise<lote[]>;
     get_cantidad(): Promise<number>;

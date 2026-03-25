@@ -1,33 +1,19 @@
-import { Repositorios_producto } from "../../infraestructura/repositorios/repositorios_producto";
 import { Producto } from "../../dominio/entidades/producto";
-import { ProductoResumen } from "../../dominio/enumns/Producto";
+import {Repositorios_producto} from "../../infraestructura/repositorios/repositorios_producto";
+import {alertas} from "../../dominio/enumns/alertas";
+import {lote} from "../../dominio/entidades/lote";
 
-
-
-export class BuscarProducto {
-    private repositorioProducto: Repositorios_producto;
-
-    constructor(repositorioProducto: Repositorios_producto) {
-        if (!repositorioProducto) {
-            throw new Error("El repositorio de productos no es válido");
-        }
-        this.repositorioProducto = repositorioProducto;
+export class Buscar_producto {
+    constructor(private readonly repositorio_producto: Repositorios_producto) {}
+    async buscarProductoPorId(id: string): Promise<Producto> {
+        if (!id) {
+            throw new Error("El ID del producto no es válido");
+        }else{
+            const producto = await this.repositorio_producto.buscarPorId(parseInt(id));
+            if (!producto) {
+                throw new Error("Producto no encontrado");
+            }   
+            return producto;
+        }   
     }
-    async obtenerProductos(): Promise<ProductoResumen[]> {
-        try {
-            const productos= await this.repositorioProducto.obtenerResumenParaReporte();
-            return productos.map(producto=>({
-                id : producto.Id.toString(),
-                nombre : producto.Nombre ,
-                precio : producto.getPrecio(),
-                fecha_caducidad : producto.Fecha_caducidad ,
-                peso : producto.Peso ,
-
-            }))
-
-        }catch(error){
-            throw new Error(" no se puede realizar este proceso ...");
-        }
-    }
-  
 }
