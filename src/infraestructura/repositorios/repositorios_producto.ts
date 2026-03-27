@@ -65,7 +65,42 @@ export class Repositorios_producto implements Repo_producto {
         
     }
     async obtenerResumenParaReporte(): Promise<Producto[]| null > {
+
         
         return Promise.resolve([]);
+    }
+
+    async obtenerResumenGeneral(): Promise<any> {
+        const [productos]: any = await pool.execute(
+            "SELECT COUNT(*) as totalProductos, AVG(precio) as precioPromedio FROM productos"
+        );
+
+        const [categorias]: any = await pool.execute(
+            "SELECT DISTINCT categoria FROM productos"
+        );
+
+        return {
+            totalProductos: productos[0]?.totalProductos || 0,
+            precioPromedio: productos[0]?.precioPromedio || 0,
+            categorias: categorias.map((cat: any) => cat.categoria)
+        };
+    }
+
+    async obtenerProductosPorCategoria(categoria: string): Promise<any> {
+        const [productos]: any = await pool.execute(
+            "SELECT * FROM productos WHERE categoria = ?",
+            [categoria]
+        );
+
+        return productos;
+    }
+
+    async obtenerProductosProximosACaducar(dias: number): Promise<any> {
+        const [productos]: any = await pool.execute(
+            "SELECT * FROM productos WHERE fecha_caducidad <= DATE_ADD(CURDATE(), INTERVAL ? DAY)",
+            [dias]
+        );
+
+        return productos;
     }
 }

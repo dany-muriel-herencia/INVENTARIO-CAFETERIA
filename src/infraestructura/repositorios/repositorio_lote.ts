@@ -7,7 +7,7 @@ import { pool } from "../base_de_datos/conexion_mysql";
 export class Repositorio_lote implements repo_lote {
     async guardar(nuevoLote: lote): Promise<void> {
         await pool.execute(
-            "INSERT INTO lotes (categoria, cantidad) VALUES (?, ?)",
+            "INSERT INTO lotes (categoria, cantidad) VALUES ( ? , ?)",
             [nuevoLote.get_categoria(), nuevoLote.get_cantidad()]
         );
         

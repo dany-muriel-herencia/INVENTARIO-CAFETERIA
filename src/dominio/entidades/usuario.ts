@@ -51,4 +51,8 @@ export class usuario {
     get_validacion(validar: boolean): boolean {
         return validar === true;
     }
+
+    get contraseña():string {
+        return this.contrasena;
+    }
 }
