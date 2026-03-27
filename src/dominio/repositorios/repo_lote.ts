@@ -6,4 +6,5 @@ export interface repo_lote {
     get_cantidad(): Promise<number>;
     get_proximos_a_vencer(): Promise<number>;
     get_almacenamiento(): Promise<number>;
+    get_lote_id(categoria: string):Promise<number | null>;
 }

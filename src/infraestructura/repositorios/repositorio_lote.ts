@@ -10,6 +10,7 @@ export class Repositorio_lote implements repo_lote {
             "INSERT INTO lotes (categoria, cantidad) VALUES (?, ?)",
             [nuevoLote.get_categoria(), nuevoLote.get_cantidad()]
         );
+        
     }
 
     async obtenerTodos(): Promise<lote[]> {
@@ -53,6 +54,7 @@ export class Repositorio_lote implements repo_lote {
         return Array.from(lotesMap.values()).map(
             (loteRow) => new lote(loteRow.productos, loteRow.categoria)
         );
+        
     }
 
     async get_cantidad(): Promise<number> {
@@ -87,6 +89,16 @@ export class Repositorio_lote implements repo_lote {
 
         const [row] = rows as TotalRow[];
         return Number(row?.total ?? 0);
+    }
+    async get_lote_id(categoria: string):Promise<number | null>{
+        const [rows] : any  = await pool.query(
+            "SELECT id FROM lotes WHERE categoria = ?",
+            [categoria]
+        );
+        if(rows.length >0){
+            return rows[0].id;
+        }
+        return null;
     }
 }
 
