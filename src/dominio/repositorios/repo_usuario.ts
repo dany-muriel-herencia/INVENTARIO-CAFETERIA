@@ -5,4 +5,5 @@ export interface Repo_usuario {
     buscar_por_correo(correo: string): Promise<usuario | null>;
     obtener_contrasena(correo: string): Promise<string | null>;
     obtener_correo(correo: string): Promise<usuario | null>;
+    eliminar(id: number ): Promise<void>;
 }

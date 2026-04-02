@@ -64,10 +64,18 @@ export class Repositorios_producto implements Repo_producto {
         return null;
         
     }
-    async obtenerResumenParaReporte(): Promise<Producto[]| null > {
+    async obtenerResumenParaReporte(): Promise<Producto[] | null> {
+        const [rows]: any = await pool.execute(
+            "SELECT id, nombre, precio, fecha_caducidad, peso FROM productos ORDER BY fecha_caducidad ASC"
+        );
+        return rows.length > 0 ? rows : null;
+    }
 
-        
-        return Promise.resolve([]);
+    async eliminar(id: number): Promise<void> {
+        await pool.execute(
+            "DELETE FROM productos WHERE id = ?",
+            [id]
+        );
     }
 
     async obtenerResumenGeneral(): Promise<any> {

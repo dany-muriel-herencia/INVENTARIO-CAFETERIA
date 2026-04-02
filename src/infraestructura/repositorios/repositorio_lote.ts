@@ -100,6 +100,13 @@ export class Repositorio_lote implements repo_lote {
         }
         return null;
     }
+
+    async eliminar(id: number): Promise<void> {
+        await pool.execute(
+            "DELETE FROM lotes WHERE id = ?",
+            [id]
+        );
+    }
 }
 
 type TotalRow = {

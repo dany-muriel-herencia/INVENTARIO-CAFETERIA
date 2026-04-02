@@ -50,4 +50,11 @@ export class Repositorio_usuario implements Repo_usuario {
 
     }
 
+    async eliminar(id: number): Promise<void> {
+        await pool.execute(
+            "DELETE FROM usuarios WHERE id = ?",
+            [id]
+        );
+    }
+
 }

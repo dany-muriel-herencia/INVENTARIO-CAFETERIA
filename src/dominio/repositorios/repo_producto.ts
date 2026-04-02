@@ -6,4 +6,5 @@ export interface Repo_producto {
     buscarPorId(id: number): Promise<Producto | null>;
     buscarPorNombre(nombre: string): Promise<Producto[] | null>;
     obtenerResumenParaReporte(): Promise<Producto[] | null>;
+    eliminar(id: number ): Promise<void>;
 }
